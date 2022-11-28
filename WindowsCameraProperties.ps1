@@ -1,6 +1,10 @@
 # Execute "Set-ExecutionPolicy RemoteSigned" if you see "....ps1 cannot be loaded because running scripts is disabled on this system. ..."
 
 if (-not (Get-Command -Name "$PSScriptRoot\bin\ffmpeg.exe" 2>$null)) {
+  cmd /c copy /b 'bin\ffmpeg.exe.0+bin\ffmpeg.exe.1+bin\ffmpeg.exe.2' 'bin\ffmpeg.exe' | Out-Null
+}
+
+if (-not (Get-Command -Name "$PSScriptRoot\bin\ffmpeg.exe" 2>$null)) {
   Write-Error -Message "$PSScriptRoot\bin\ffmpeg.exe is not executable"
   pause
   exit 1
